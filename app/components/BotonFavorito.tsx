@@ -6,10 +6,7 @@ export default function BotonFavorito() {
   const [marcado, setMarcado] = useState(false);
 
   return (
-    <button 
-      onClick={() => setMarcado(!marcado)}
-      className="mt-4 bg-yellow-100 text-yellow-800 px-3 py-1 rounded border border-yellow-300 hover:bg-yellow-200"
-    >
+    <button onClick={() => setMarcado(!marcado)}>
       {marcado ? '★ Favorito' : '☆ Marcar como favorito'}
     </button>
   );
