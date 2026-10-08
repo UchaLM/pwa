@@ -1,13 +1,23 @@
 import Link from 'next/link';
 
 export default async function LibrosPage() {
-  const res = await fetch('http://127.0.0.1:8000/api/libros');
+  let libros = [];
+  let error = false;
+
+  try {
+    const res = await fetch('http://127.0.0.1:8000/api/libros');
+    if (!res.ok) {
+      error = true;
+    } else {
+      libros = await res.json();
+    }
+  } catch (e) {
+    error = true; // Handle network errors (like ECONNREFUSED on Vercel)
+  }
   
-  if (!res.ok) {
+  if (error) {
     return <p>No se pudieron cargar los libros. Intentá nuevamente más tarde.</p>;
   }
-
-  const libros = await res.json();
 
   return (
     <main>
